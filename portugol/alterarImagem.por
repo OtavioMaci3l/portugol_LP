@@ -3,28 +3,30 @@ programa
 	inclua biblioteca Tipos --> t
 	inclua biblioteca Arquivos --> a
 
-	funcao alterarImagem(cadeia imagem, inteiro quanto, logico mm){
-		cadeia linha="", info=""
-		inteiro arquivo=a.abrir_arquivo(imagem,0)
-		para(inteiro i=0; nao a.fim_arquivo(arquivo); i++){
-			se(i<4){
-				info=a.ler_linha(arquivo)
-			}
-			se(i>=4){
-				linha=a.ler_linha(arquivo)
-			}
+	funcao alterarImagem(cadeia qualImagem, inteiro quanto, logico mm){
+		se(mm==verdadeiro){
+			t.cadeia_e_inteiro(linha, 10)
+		}senao{
+			t.cadeia_e_inteiro(linha, 10)
 		}
-		a.fechar_arquivo(arquivo)
+		cadeia linha="", info=""
+		inteiro imagem=a.abrir_arquivo(qualImagem,0)
+		inteiro imagemAlterada=a.abrir_arquivo("imagemAlterada.pgm",1)
+		para(inteiro i=0; nao a.fim_arquivo(imagem); i++){
+			linha=a.ler_linha(imagem)
+			a.escrever_linha(linha, imagemAlterada)
+		}
+		a.fechar_arquivo(imagem)
 	}
 	
 	funcao inicio()
 	{
-		cadeia imagem="imagem.pgm"
+		cadeia qualImagem="imagem.pgm"
 		inteiro quanto=0
 		logico mm=falso
 		escreva("Mudara a opacidade : ")
 		leia(quanto)
-		alterarImagem(imagem, quanto, mm)
+		alterarImagem(qualImagem, quanto, mm)
 	}
 }
 
@@ -33,7 +35,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 577; 
+ * @POSICAO-CURSOR = 200; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
