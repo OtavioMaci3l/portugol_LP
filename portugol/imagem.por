@@ -3,12 +3,12 @@ programa
 	inclua biblioteca Tipos --> t
 	inclua biblioteca Arquivos --> a
 
-	funcao lerArquivo(){
-		cadeia linha=""
-		inteiro arquivo=a.abrir_arquivo("imagem.pgm",0)
+	funcao alterarImagem(cadeia imagem, inteiro quanto, logico mm){
+		cadeia linha="", info=""
+		inteiro arquivo=a.abrir_arquivo(imagem,0)
 		para(inteiro i=0; nao a.fim_arquivo(arquivo); i++){
 			se(i<4){
-				a.ler_linha(arquivo)
+				info=a.ler_linha(arquivo)
 			}
 			se(i>=4){
 				linha=a.ler_linha(arquivo)
@@ -20,7 +20,12 @@ programa
 	
 	funcao inicio()
 	{
-		lerArquivo()
+		cadeia imagem="imagem.pgm"
+		inteiro quanto=0
+		logico mm=falso
+		escreva("Mudara a opacidade : ")
+		leia(quanto)
+		alterarImagem(imagem, quanto, mm)
 	}
 }
 
@@ -29,7 +34,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 367; 
+ * @POSICAO-CURSOR = 595; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
