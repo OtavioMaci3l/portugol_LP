@@ -12,7 +12,6 @@ programa
 			}
 			se(i>=4){
 				linha=a.ler_linha(arquivo)
-				escreva("\n",linha)
 			}
 		}
 		a.fechar_arquivo(arquivo)
@@ -34,7 +33,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 595; 
+ * @POSICAO-CURSOR = 577; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
