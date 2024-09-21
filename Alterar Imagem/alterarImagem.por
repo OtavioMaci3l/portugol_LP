@@ -4,33 +4,33 @@ programa
 	inclua biblioteca Arquivos --> a
 
 	funcao alterarImagem(cadeia qualImagem, inteiro quanto, logico mm){
-		cadeia linha="", pixelAlterado="", info=""
+		cadeia linha="", pixelAlterado="", info
 		inteiro result=0
 		inteiro imagem=a.abrir_arquivo(qualImagem,0)
 		inteiro imagemAlterada=a.abrir_arquivo("imagemAlterada.pgm",1)
 		para(inteiro i=0; nao a.fim_arquivo(imagem); i++){
-			se(i<4){
-				info=a.ler_linha(imagem)
-				a.escrever_linha(info, imagemAlterada)
-			}senao{
-				se(mm==verdadeiro){
-					linha=a.ler_linha(imagem)
-					result=t.cadeia_para_inteiro(linha, 10)+quanto
-					se(result>255){
-						result=255
-					}
-					pixelAlterado = ""+result
-					a.escrever_linha(pixelAlterado, imagemAlterada)
-				}senao{
-					linha=a.ler_linha(imagem)
-					result=t.cadeia_para_inteiro(linha, 10)-quanto
-					se(result<0){
-						result=0
-					}
-					linha=a.ler_linha(imagem)
-					pixelAlterado = ""+result
-					a.escrever_linha(pixelAlterado, imagemAlterada)
+			para(inteiro j=4; j>=0; j--){
+				linha=a.ler_linha(imagem)
+				a.escrever_linha(linha, imagemAlterada)
+			}
+			se(mm == verdadeiro){
+				linha = a.ler_linha(imagem)
+				result=t.cadeia_para_inteiro(linha, 10)
+				result+=quanto
+				se(result < 0){
+					result = 0
 				}
+				linha=result+""
+				a.escrever_linha(linha,imagemAlterada)
+			}senao{
+				linha = a.ler_linha(imagem)
+				result=t.cadeia_para_inteiro(linha, 10)
+				result-=quanto
+				se(result > 255){
+					result = 255
+				}
+				linha=result+""
+				a.escrever_linha(linha,imagemAlterada)
 			}
 		}
 		a.fechar_arquivo(imagem)
@@ -40,8 +40,20 @@ programa
 	funcao inicio()
 	{
 		cadeia qualImagem="imagem.pgm"
-		inteiro quanto=0
+		inteiro op, quanto=0
 		logico mm=falso
+		escreva("Escolha uma opção :\n1.Almentar brilho\nDiminuir brulho\n------------------------------\n")
+		leia(op)
+		se(op == 1){
+			mm=verdadeiro
+		}senao se(op == 2){
+			mm=falso
+		}senao{
+			limpa()
+			escreva("'"+op+"' é um opção invalida\n")
+			inicio()
+			
+		}
 		escreva("Mudara a opacidade : ")
 		leia(quanto)
 		alterarImagem(qualImagem, quanto, mm)
