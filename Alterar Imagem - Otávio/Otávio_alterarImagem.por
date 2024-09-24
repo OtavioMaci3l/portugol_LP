@@ -73,7 +73,7 @@ programa
 					}senao{
 						limpa()
 						escreva("'"+op+"' é um opção invalida\n")	
-						veri=verdadeiro
+						veri=falso
 					}
 				}
 				escreva("-------------------------------------------------\n")
@@ -97,7 +97,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2050; 
+ * @POSICAO-CURSOR = 1932; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
