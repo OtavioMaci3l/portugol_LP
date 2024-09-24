@@ -3,10 +3,10 @@ programa
 	inclua biblioteca Tipos --> t
 	inclua biblioteca Arquivos --> a
 
-	funcao alterarImagem(cadeia qualImagem, inteiro quanto, logico mm){
+	funcao alterarImagem(cadeia arquivo, inteiro quanto, logico mm){
 		cadeia linha="", pixelAlterado="", info
 		inteiro result=0,j=4
-		inteiro imagem=a.abrir_arquivo(qualImagem,0)
+		inteiro imagem=a.abrir_arquivo(arquivo,0)
 		inteiro imagemAlterada=a.abrir_arquivo("imagemAlterada.pgm",1)
 		para(inteiro i=0; nao a.fim_arquivo(imagem); i++){
 			para(j;j>=0; j--){
@@ -51,31 +51,44 @@ programa
 	
 	funcao inicio()
 	{
-		cadeia qualImagem="imagem.pgm", mmm=""
+		cadeia arquivo, mmm=""
 		inteiro op, quanto=0
-		logico mm=falso, veri=falso
-		enquanto(veri==falso){
-			escreva("------------------------\nEscolha uma opção :\n1.Almentar brilho\n2.Diminuir brilho\n------------------------\n")
-			leia(op)
-			se(op == 1){
-				mm=verdadeiro
-				veri=verdadeiro
-				mmm="o almento"
-			}senao se(op == 2){
-				mm=falso
-				veri=verdadeiro
-				mmm="a diminuição"
+		logico mm=falso, veri=falso, veri2=falso
+		enquanto(veri2==falso){
+			escreva("-------------------------------------------------\n")
+			escreva("Digite o nome do arquiuvo : ")
+			leia(arquivo)
+			se(a.arquivo_existe(arquivo)){
+				enquanto(veri==falso){
+					escreva("-------------------------------------------------\nEscolha uma opção :\n1.Almentar brilho\n2.Diminuir brilho\n-------------------------------------------------\n")
+					leia(op)
+					se(op == 1){
+						mm=verdadeiro
+						veri=verdadeiro
+						mmm="o almento"
+					}senao se(op == 2){
+						mm=falso
+						veri=verdadeiro
+						mmm="a diminuição"
+					}senao{
+						limpa()
+						escreva("'"+op+"' é um opção invalida\n")	
+						veri=verdadeiro
+					}
+				}
+				escreva("-------------------------------------------------\n")
+				escreva("Qual será "+mmm+" no brilho da imagem : ")
+				leia(quanto)
+				escreva("-------------------------------------------------\n")
+				alterarImagem(arquivo, quanto, mm)
+				escreva("\nImagem alterda com sucesso")
+				veri2=verdadeiro
+				escreva("\n\n-------------------------------------------------\n")
 			}senao{
 				limpa()
-				escreva("'"+op+"' é um opção invalida\n")	
-				veri=falso
+				escreva("O arquivo '"+arquivo+"' não foi encontrado\n")
 			}
 		}
-		escreva("-------------------------------------------------\n")
-		escreva("Qual será "+mmm+" do brilho da imagem : ")
-		leia(quanto)
-		escreva("-------------------------------------------------\n")
-		alterarImagem(qualImagem, quanto, mm)
 	}
 }
 
@@ -84,7 +97,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1818; 
+ * @POSICAO-CURSOR = 2050; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
